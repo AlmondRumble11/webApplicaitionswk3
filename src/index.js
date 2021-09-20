@@ -105,8 +105,16 @@ async function getDogPics() {
   wikiHeader.innerHTML = Object.keys(all.message)[num].toUpperCase();
 
   wikiImg.src = pic.message;
-  textPara.innerHTML =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi tincidunt, tellus vel molestie varius, risus neque gravida enim, vel vehicula sapien magna et nibh. Sed convallis eros et gravida vestibulum. Vivamus volutpat pellentesque massa, vitae consequat erat viverra eget. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed ut tellus gravida, vulputate est vitae, hendrerit lorem. Vestibulum malesuada rutrum turpis ac pulvinar. Donec nec semper eros.";
+
+  //get text from wikipedia
+  let wikiUrl =
+    "https://en.wikipedia.org/api/rest_v1/page/summary/" +
+    Object.keys(all.message)[num];
+  fetch(wikiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      textPara.innerHTML = data.extract;
+    });
 
   //combine all
   itemDiv.appendChild(wikiHeader);
