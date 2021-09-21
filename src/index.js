@@ -60,27 +60,24 @@ function runCode() {
   getDogPics();*/
 }
 
-async function getDogPics() {
+function getDogPics() {
   //get breed list
-  let urlBreeds = "https://dog.ceo/api/breeds/list/all";
-  let res = await fetch(urlBreeds);
-  let all = await res.json();
+
+  //let res = await fetch(urlBreeds);
+  //let all = await res.json();
 
   //console.log(all.message);
   //console.log(Object.keys(all.message).length);
 
   //get random number to get a breed
-  let num = Math.floor(Math.random() * Object.keys(all.message).length);
+  // let num = Math.floor(Math.random() * Object.keys(all.message).length);
   //console.log(num);
   //console.log(Object.keys(all.message)[num]);
 
   //get the picture of the breed
-  let urlPic =
-    "https://dog.ceo/api/breed/" +
-    Object.keys(all.message)[num] +
-    "/images/random";
-  let getPic = await fetch(urlPic);
-  let pic = await getPic.json();
+
+  //let getPic = await fetch(urlPic);
+  //let pic = await getPic.json();
   //console.log(pic.message);
 
   const containerDiv = document.createElement("div");
@@ -102,18 +99,33 @@ async function getDogPics() {
 
   //add text to header and text box
 
-  wikiHeader.innerHTML = Object.keys(all.message)[num].toUpperCase();
-
-  wikiImg.src = pic.message;
-
-  //get text from wikipedia
-  let wikiUrl =
-    "https://en.wikipedia.org/api/rest_v1/page/summary/" +
-    Object.keys(all.message)[num];
-  fetch(wikiUrl)
-    .then((response) => response.json())
+  let urlBreeds = "https://dog.ceo/api/breeds/list/all";
+  fetch(urlBreeds)
+    .then((res) => res.json())
     .then((data) => {
-      textPara.innerHTML = data.extract;
+      let all = data;
+      let num = Math.floor(Math.random() * Object.keys(all.message).length);
+      let urlPic =
+        "https://dog.ceo/api/breed/" +
+        Object.keys(all.message)[num] +
+        "/images/random";
+      wikiHeader.innerHTML = Object.keys(all.message)[num].toUpperCase();
+
+      fetch(urlPic)
+        .then((response) => response.json())
+        .then((getpic) => {
+          let pic = getpic;
+          wikiImg.src = pic.message;
+        });
+      //get text from wikipedia
+      let wikiUrl =
+        "https://en.wikipedia.org/api/rest_v1/page/summary/" +
+        Object.keys(all.message)[num];
+      fetch(wikiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          textPara.innerHTML = data.extract;
+        });
     });
 
   //combine all
