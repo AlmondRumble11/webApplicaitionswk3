@@ -71,8 +71,8 @@ async function getDogPics() {
 
   //get random number to get a breed
   let num = Math.floor(Math.random() * Object.keys(all.message).length);
-  console.log(num);
-  console.log(Object.keys(all.message)[num]);
+  //console.log(num);
+  //console.log(Object.keys(all.message)[num]);
 
   //get the picture of the breed
   let urlPic =
@@ -81,7 +81,7 @@ async function getDogPics() {
     "/images/random";
   let getPic = await fetch(urlPic);
   let pic = await getPic.json();
-  console.log(pic.message);
+  //console.log(pic.message);
 
   const containerDiv = document.createElement("div");
   const itemDiv = document.createElement("div");
