@@ -116,6 +116,9 @@ function getDogPics() {
         .then((getpic) => {
           let pic = getpic;
           wikiImg.src = pic.message;
+        })
+        .catch((error) => {
+          console.error("Error:", error);
         });
       //get text from wikipedia
       let wikiUrl =
@@ -125,7 +128,13 @@ function getDogPics() {
         .then((response) => response.json())
         .then((data) => {
           textPara.innerHTML = data.extract;
+        })
+        .catch((error) => {
+          console.error("Error:", error);
         });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
     });
 
   //combine all
