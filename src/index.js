@@ -111,7 +111,7 @@ function getDogPics() {
         "/images/random";
       wikiHeader.innerHTML = Object.keys(all.message)[num].toUpperCase();
 
-      /*  fetch(urlPic, { method: "GET" })
+      fetch(urlPic, { method: "GET" })
         .then((response) => response.json())
         .then((getpic) => {
           let pic = getpic;
@@ -131,7 +131,7 @@ function getDogPics() {
         })
         .catch((error) => {
           console.error("Error:", error);
-        });*/
+        });
     })
     .catch((error) => {
       console.error("Error:", error);
