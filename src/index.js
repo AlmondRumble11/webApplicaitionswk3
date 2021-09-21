@@ -100,7 +100,7 @@ function getDogPics() {
   //add text to header and text box
 
   let urlBreeds = "https://dog.ceo/api/breeds/list/all";
-  fetch(urlBreeds)
+  fetch(urlBreeds, { method: "GET" })
     .then((res) => res.json())
     .then((data) => {
       let all = data;
@@ -111,7 +111,7 @@ function getDogPics() {
         "/images/random";
       wikiHeader.innerHTML = Object.keys(all.message)[num].toUpperCase();
 
-      fetch(urlPic)
+      fetch(urlPic, { method: "GET" })
         .then((response) => response.json())
         .then((getpic) => {
           let pic = getpic;
@@ -121,7 +121,7 @@ function getDogPics() {
       let wikiUrl =
         "https://en.wikipedia.org/api/rest_v1/page/summary/" +
         Object.keys(all.message)[num];
-      fetch(wikiUrl)
+      fetch(wikiUrl, { method: "GET" })
         .then((response) => response.json())
         .then((data) => {
           textPara.innerHTML = data.extract;
